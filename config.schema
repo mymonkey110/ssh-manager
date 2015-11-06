@@ -4,6 +4,7 @@ hostname varchar(255) not null,
 alias varchar(128),
 username varchar(128),
 password varchar(255),
+port integer not null,
 gmt_create datetime default (datetime('now','localtime')),
 gmt_modify datetime default (datetime('now','localtime'))
 );
