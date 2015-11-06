@@ -3,12 +3,13 @@
 # Copyright (c) 2015 Michael Jiang
 # This file is part of ssh-manager under
 # the MIT License: https://opensource.org/licenses/MIT
-from getpass import getpass
+
 
 import os
 import sqlite3
 import sys
 from tabulate import tabulate
+from getpass import getpass
 
 config_db_path = os.path.expanduser("~/.sm/config.db")
 
@@ -64,16 +65,24 @@ def add_host():
         cursor.execute(sql)
         if cursor.rowcount != 1:
             print("Add host:%s failed." % hostname)
+        else:
+            print("Add host:%s success!" % hostname)
         cursor.close()
 
 
-def remove_host(_id):
-    if not _id:
-        print("please assign host alias or id")
-
-    with sqlite3.connect(config_db_path) as conn:
-        cursor = conn.cursor()
-        cursor.execute("DELETE FROM host WHERE id=" + _id)
+def remove_host():
+    """
+    remove host from db
+    """
+    host_id = raw_input("input host id you want delete:")
+    if int(host_id) > 0:
+        with sqlite3.connect(config_db_path) as conn:
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM host WHERE id=" + host_id)
+            if cursor.rowcount != 1:
+                print("host not found")
+    else:
+        print("bad input")
 
 
 def init():
@@ -84,21 +93,25 @@ def init():
 def show_usage():
     print("""
     sm [show|add|remove]
-    show    show host list
-    add     add host to db
-    remove  remove host from db
+    s | show    show host list
+    a | add     add host to db
+    r | remove  remove host from db
     """)
 
 
 if __name__ == "__main__":
+
     init()
 
     if len(sys.argv) > 1:
-        if sys.argv[1] == "show":
+        op = sys.argv[1]
+        if op in ['s', 'show']:
             show_host()
-        if sys.argv[1] == "add":
+        elif op in ['a', 'add']:
             add_host()
-        if sys.argv[1] == "remove":
-            remove_host(sys.argv[2])
+        elif op in ['r', 'remove']:
+            remove_host()
+        else:
+            show_usage()
     else:
         show_usage()
