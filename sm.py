@@ -4,6 +4,7 @@
 # This file is part of ssh-manager under
 # the MIT License: https://opensource.org/licenses/MIT
 
+# !/usr/bin/env python
 
 import os
 import sqlite3
@@ -13,8 +14,6 @@ from tabulate import tabulate
 from getpass import getpass
 
 config_db_path = os.path.expanduser("~/.sm/config.db")
-
-hosts = []
 
 
 def init_config_db():
@@ -37,10 +36,12 @@ def init():
 
 def show_usage():
     print("""
-    sm [show|add|remove]
+    Usage: sm [s | a | r | o ]
+
     s | show    show host list
     a | add     add host to db
     r | remove  remove host from db
+    o | open    open host
     """)
 
 
