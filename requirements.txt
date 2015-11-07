@@ -1,3 +1,6 @@
+# dependency package
+# pip install -r requirements.txt
+
 ecdsa==0.13
 pexpect==4.0.1
 ptyprocess==0.5

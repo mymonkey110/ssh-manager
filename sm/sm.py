@@ -64,7 +64,7 @@ def add_host():
     """
     Add host to db
     """
-    hostname = raw_input("hostname(eg:192.168.199.100):")
+    hostname = raw_input("hostname(eg:192.168.1.100):")
     username = raw_input("username(default:root):") or 'root'
     password = getpass("password:")
     port = raw_input("port(default:22):") or 22
