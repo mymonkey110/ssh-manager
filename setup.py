@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='sm',
-    version='0.0.1',
+    version='0.0.2',
     keywords=('ssh', 'manager'),
     description="ssh host command manager tool",
     license='MIT License',
@@ -10,11 +10,13 @@ setup(
                       'wheel==0.24.0'],
     author='Michael Jiang',
     author_email='mymonkey110@gmail.com',
+    maintainer='Michael Jiang',
+    maintainer_email='mymonkey110@gmail.com',
     packages=find_packages(),
     platform=('Linux', 'Mac'),
     entry_points={
         'console_script': [
-            'sm=sm.sm.main'
+            'sm=sm.sm:main'
         ],
     }
 )

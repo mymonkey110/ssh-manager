@@ -1,4 +1,4 @@
-# sm is a command tool for managing ssh host 
+# SM: command tool for managing ssh host 
 
 # Install
 
