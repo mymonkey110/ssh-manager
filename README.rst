@@ -5,11 +5,11 @@ SM: command tool for managing ssh host
 Install
 -------
 
-To install Requests, simply:
+To install sm, simply:
 
 .. code-block:: bash
     
-    $ pip install requests
+    $ pip install sm
 
 Platform Support
 ----------------
