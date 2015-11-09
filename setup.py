@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 
 def readme():
@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name='sm',
-    version='0.0.3',
+    version='0.0.4',
     keywords=('ssh', 'manager'),
     url='https://github.com/mymonkey110/ssh-manager',
     description="ssh host command manager tool",
@@ -25,6 +25,8 @@ setup(
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Topic :: System :: Systems Administration',
     ],
