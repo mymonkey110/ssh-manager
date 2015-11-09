@@ -1,14 +1,24 @@
-# SM: command tool for managing ssh host 
+SM: command tool for managing ssh host 
+======================================
 
-# Install
 
-> pip install sm
+Install
+-------
 
-# Platform Support
+To install Requests, simply:
+
+.. code-block:: bash
+    
+    $ pip install requests
+
+Platform Support
+----------------
 
 Linux/Mac OS support
 
-# License
+
+License
+-------
 
 The MIT License (MIT)
 
