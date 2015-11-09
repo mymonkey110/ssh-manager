@@ -130,8 +130,9 @@ def open_host():
                 print("executing " + ssh_cmd)
                 try:
                     child = pexpect.spawn(ssh_cmd)
-                    child.expect('[P|p]assword:', timeout=10)
-                    child.sendline(password)
+                    i = child.expect(['[P|p]assword:', '\$|#'], timeout=10)
+                    if i == 0:
+                        child.sendline(password)
                     child.interact()
                 except pexpect.TIMEOUT:
                     print("open host failed!")

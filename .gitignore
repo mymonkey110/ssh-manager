@@ -11,6 +11,7 @@
 ## ignore build dir
 build
 dist
+sm.egg-info
 
 ## Directory-based project format:
 .idea/

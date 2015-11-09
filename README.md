@@ -2,6 +2,8 @@
 
 # Install
 
+> pip install sm
+
 # Platform Support
 
 Linux/Mac OS support
