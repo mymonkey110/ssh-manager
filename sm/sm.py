@@ -15,7 +15,7 @@ from getpass import getpass
 
 config_db_path = os.path.expanduser("~/.sm/config.db")
 config_db_dir = os.path.expanduser("~/.sm")
-config_schema_path = os.path.abspath(os.path.curdir) + os.path.sep + "config.schema"
+config_schema_path = os.path.dirname(__file__) + os.sep + "config.schema"
 
 
 def init_config_db():
@@ -127,15 +127,14 @@ def open_host():
                 print("executing " + ssh_cmd)
                 try:
                     child = pexpect.spawn(ssh_cmd)
-                    i = child.expect(['[P|p]assword:', '\$|#'], timeout=10)
+                    i = child.expect(['[P|p]assword:', 'yes/no', '\$|#'], timeout=10)
                     if i == 0:
                         child.sendline(password)
-                        child.interact()
                     elif i == 1:
-                        child.interact()
-                    else:
-                        print("Here")
-                        print(child.before)
+                        child.sendline('yes')
+                        child.expect('[P|p]assword:', timeout=10)
+
+                    child.interact()
                 except pexpect.TIMEOUT:
                     print("connect to %s timeout!" % hostname)
                 except pexpect.EOF:

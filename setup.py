@@ -8,18 +8,21 @@ def readme():
 
 setup(
     name='sm',
-    version='0.1.1',
+    version='0.1.3',
     keywords=('ssh', 'manager'),
     url='https://github.com/mymonkey110/ssh-manager',
     description="ssh host command manager tool",
     long_description=readme(),
     license='MIT License',
-    install_requires=['pexpect==4.0.1', 'ptyprocess==0.5', 'tabulate==0.7.5', ],
+    install_requires=['pexpect', 'ptyprocess', 'tabulate'],
     author='Michael Jiang',
     author_email='mymonkey110@gmail.com',
     maintainer='Michael Jiang',
     maintainer_email='mymonkey110@gmail.com',
     packages=['sm'],
+    package_data={
+        'sm': ["config.schema"]
+    },
     platform=('Linux', 'Mac'),
     classifiers=[
         'Development Status :: 4 - Beta',
