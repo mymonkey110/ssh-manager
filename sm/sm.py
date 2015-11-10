@@ -128,16 +128,16 @@ def open_host():
                 try:
                     child = pexpect.spawn(ssh_cmd)
                     i = child.expect(['[P|p]assword:', 'yes/no', '\$|#', 'Permission denied'], timeout=10)
-                    if i == 0:
-                        child.sendline(password)
-                    elif i == 1:
-                        child.sendline('yes')
-                        child.expect('[P|p]assword:', timeout=10)
+                    if i < 3:
+                        if i==0:
+                            child.sendline(password)
+                        elif i == 1:
+                            child.sendline('yes')
+                            child.sendline(password)
+                        child.interact()
                     elif i == 3:
                         print("Permission denied on host:%s, probably password error!")
-                        child.kill(-1)
-
-                    child.interact()
+                        sys.exit(-1)
                 except pexpect.TIMEOUT:
                     print("connect to %s timeout!" % hostname)
                 except pexpect.EOF:
