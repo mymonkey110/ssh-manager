@@ -8,14 +8,13 @@ def readme():
 
 setup(
     name='sm',
-    version='0.0.4',
+    version='0.0.5',
     keywords=('ssh', 'manager'),
     url='https://github.com/mymonkey110/ssh-manager',
     description="ssh host command manager tool",
     long_description=readme(),
     license='MIT License',
-    install_requires=['ecdsa==0.13', 'pexpect==4.0.1', 'ptyprocess==0.5', 'pycrypto==2.6.1', 'tabulate==0.7.5',
-                      'wheel==0.24.0'],
+    install_requires=['pexpect==4.0.1', 'ptyprocess==0.5', 'tabulate==0.7.5', ],
     author='Michael Jiang',
     author_email='mymonkey110@gmail.com',
     maintainer='Michael Jiang',

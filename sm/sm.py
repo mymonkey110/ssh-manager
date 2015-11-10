@@ -138,8 +138,7 @@ def open_host():
                     print("open host failed!")
 
 
-if __name__ == "__main__":
-
+def main():
     init()
 
     if len(sys.argv) > 1:
@@ -156,3 +155,7 @@ if __name__ == "__main__":
             show_usage()
     else:
         show_usage()
+
+
+if __name__ == "__main__":
+    main()
