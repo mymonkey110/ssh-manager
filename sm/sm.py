@@ -14,6 +14,7 @@ from tabulate import tabulate
 from getpass import getpass
 
 config_db_path = os.path.expanduser("~/.sm/config.db")
+config_db_dir = os.path.expanduser("~/.sm")
 
 
 def init_config_db():
@@ -21,6 +22,7 @@ def init_config_db():
     Initialize config
     create sqlite db in {home}/.sm/config.db
     """
+    os.mkdir(config_db_dir)
     with sqlite3.connect(config_db_path) as conn:
         print("Initializing config db...")
         db_file = file("config.schema")
@@ -133,12 +135,19 @@ def open_host():
                     i = child.expect(['[P|p]assword:', '\$|#'], timeout=10)
                     if i == 0:
                         child.sendline(password)
-                    child.interact()
+                        child.interact()
+                    elif i == 1:
+                        child.interact()
+                    else:
+                        print("Here")
+                        print(child.before)
                 except pexpect.TIMEOUT:
-                    print("open host failed!")
+                    print("connect to %s timeout!" % hostname)
+                except pexpect.EOF:
+                    print("connect error:" + child.before)
 
 
-def main():
+def run():
     init()
 
     if len(sys.argv) > 1:
@@ -158,4 +167,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    run()

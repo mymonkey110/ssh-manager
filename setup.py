@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name='sm',
-    version='0.0.5',
+    version='0.1.0',
     keywords=('ssh', 'manager'),
     url='https://github.com/mymonkey110/ssh-manager',
     description="ssh host command manager tool",
@@ -30,8 +30,8 @@ setup(
         'Topic :: System :: Systems Administration',
     ],
     entry_points={
-        'console_script': [
-            'sm=sm.sm:main'
-        ],
+        'console_scripts': [
+            'sm = sm.main:main',
+        ]
     }
 )

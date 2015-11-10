@@ -1,1 +1,1 @@
-__author__ = 'Michael Jiang'
+from .sm import run
