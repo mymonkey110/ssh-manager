@@ -15,6 +15,7 @@ from getpass import getpass
 
 config_db_path = os.path.expanduser("~/.sm/config.db")
 config_db_dir = os.path.expanduser("~/.sm")
+config_schema_path = os.path.abspath(os.path.curdir) + os.path.sep + "config.schema"
 
 
 def init_config_db():
@@ -25,7 +26,7 @@ def init_config_db():
     os.mkdir(config_db_dir)
     with sqlite3.connect(config_db_path) as conn:
         print("Initializing config db...")
-        db_file = file("config.schema")
+        db_file = file(config_schema_path)
         schema = db_file.read()
         conn.executescript(schema)
         print("Initialize completed!")
@@ -74,12 +75,6 @@ def add_host():
 
     with sqlite3.connect(config_db_path) as conn:
         cursor = conn.cursor()
-        # if alias:
-        #     sql = "insert into host(hostname,username,password,alias) values('%s','%s','%s','%s')" % (
-        #         hostname, username, password, alias)
-        # else:
-        #     sql = "insert into host(hostname,username,password) values('%s','%s','%s')" % \
-        #           (hostname, username, password)
 
         sql = "insert into host(hostname,username,password,alias,port) values('%s','%s','%s','%s',%d)" % (
             hostname, username, password, alias, port)
