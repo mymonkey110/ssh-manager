@@ -11,6 +11,28 @@ To install sm, simply:
     
     $ pip install sm
 
+Demo
+----
+
+Click here_ to watch
+
+.. _here: http://asciinema.org/a/cszwmuc3w6fhqpgudq6r34hoi
+
+
+
+Usage
+-----
+
+.. code-block:: bash
+
+    Usage: sm [s | a | r | o ]
+
+    s | show    show host list
+    a | add     add host to db
+    r | remove  remove host from db
+    o | open    open host
+
+
 Platform Support
 ----------------
 

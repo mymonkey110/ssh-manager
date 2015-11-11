@@ -105,7 +105,6 @@ def remove_host():
                 if confirm == 'n':
                     sys.exit(0)
                 cursor.execute("DELETE FROM host WHERE id=" + host_id)
-
     else:
         print("bad input")
 
@@ -129,15 +128,17 @@ def open_host():
                     child = pexpect.spawn(ssh_cmd)
                     i = child.expect(['[P|p]assword:', 'yes/no', '\$|#', 'Permission denied'], timeout=10)
                     if i < 3:
-                        if i==0:
-                            child.sendline(password)
-                        elif i == 1:
+                        if i == 1:
                             child.sendline('yes')
-                            child.sendline(password)
-                        child.interact()
-                    elif i == 3:
-                        print("Permission denied on host:%s, probably password error!")
-                        sys.exit(-1)
+                        child.sendline(password)
+                        j = child.expect(['\$|#', 'Permission denied'], timeout=3)
+                        if j == 0:
+                            child.interact()
+                            child.kill(0)
+                            sys.exit(0)
+
+                    print("Permission denied by host:%s, probably password error!" % hostname)
+                    sys.exit(-1)
                 except pexpect.TIMEOUT:
                     print("connect to %s timeout!" % hostname)
                 except pexpect.EOF:

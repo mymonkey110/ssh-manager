@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name='sm',
-    version='0.1.5',
+    version='0.1.8',
     keywords=('ssh', 'manager'),
     url='https://github.com/mymonkey110/ssh-manager',
     description="ssh host command manager tool",
